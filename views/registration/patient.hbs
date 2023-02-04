@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="patient.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="inner-card" id="cards">
+                <div class="card-front">
+                  <h2>PATIENT</h2>
+                  <h3>Login</h3>
+                  <form method="post" action="http://localhost:8000" enctype="application/x-www-form-urlencoded">
+                      {{!-- <input type="email" name="email" class="input-box" placeholder="Email Id" id="email" required >
+                      <input type="password" class="input-box" placeholder="password" id="password" name="password" required>             
+                      <button type="submit" class="submit-button">Submit</button><hr>
+                      <a href="#" class="fa fa-google">Google+</a> --}}
+                      <input type="text" name="email" value="ypu@yourmail.com">
+                      <input type="text" name="password" value="likeitOr7!">
+                      <input type="text" name="name" value="name">
+                      <input type="text" name="date_of_birth" value="12/12/2002">
+                      <input type="text" name="phone_number" value="9876543210">
+                      <input type="text" name="Gender" value="male">
+                      <input type="text" name="address" value="address">
+                      <input type="submit">
+
+                    </form>
+                    
+                    <button type="button" class="btn"  onclick="window.location.href ='signup_patient.html'" >Register</button>
+                    <a href=""> Forgot Password</a>
+                </div>
+               <script src="js/tscr.js">
+
+               </script>
+                     
+                      
+                  
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
