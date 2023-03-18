@@ -9,10 +9,10 @@ const patientModel = require("../../models/patient");
 // })
 
 
-router.get('/registration/patient', (req, res) => {
-    res.render("index")
+router.get('/', (req, res) => {
+    res.render("login")
 })
-router.post("/registration/patient", (req, res) => {
+router.post("/", (req, res) => {
     console.log(req.body.email)
     console.log(req.body.password)
     const obj = {
@@ -45,10 +45,10 @@ router.post("/registration/patient", (req, res) => {
 
 })
 
-router.get("/registration/doctor/", (req, res) => {
+router.get("/", (req, res) => {
     res.render("./registration/doctor");
 })
-router.post("/registration/doctor/", async (req, res) => {
+router.post("/", async (req, res) => {
     const obj = {
         email: req.body.email,
         password: req.body.password,
