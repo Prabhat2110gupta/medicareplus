@@ -1,6 +1,6 @@
 const express=require('express');
 const router= new express.Router;
-const patientModel = require("../models/patient");
+const patientModel = require("../../models/patient");
 // router.get('/registration/patient/', (req, res) => {
 //     res.render("./registration/patient")
 // })

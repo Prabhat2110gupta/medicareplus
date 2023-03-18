@@ -62,19 +62,12 @@ const patientModel = require("./models/patient");
 mongoose.connect("mongodb://localhost:27017/med_register").then(() => {
     console.log(`Mongoose connected`);
 }).catch((e) => {
+    console.log(e);
     console.log(`Mongoose not connected`);
 })
 
-app.get("/", (req, res) => {
-    res.render("index")
-})
-
-const loginRoute=require('./routes/login');
-app.use("/",loginRoute);
 
 
-const registrationRoute=require('./routes/registration');
-app.use("/",registrationRoute);
 
 // app.get('/registration/patient', (req, res) => {
 //     res.render("index")
@@ -163,7 +156,10 @@ app.get("/test/", (req, res) => {
     res.render("test");
 })
 
-const testSchema = require("./models/test")
+const testSchema = require("./models/test");
+const indexRouter = require('./routes');
+app.use("/",indexRouter);
+
 app.post("/test/", upload.single("doc"), (req, res) => {
     if (req.fileValidationError) {
         return res.send("please upload a pdf");
