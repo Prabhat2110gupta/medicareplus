@@ -1,28 +1,5 @@
 const express=require('express');
-var passport = require('passport');
-var LocalStrategy = require('passport-local');
-var crypto = require('crypto');
-const patientModel = require("../../models/patient");
-passport.use(
-    new LocalStrategy(
-        async function verify(username,password,cb){
-            //requesting user to enter email as username
-            console.log(username)
-            try {
-                const userData = await patientModel.findOne({ email: username });
-                if (userData!=null&&userData.password === password) {
-                    return cb(null, userData);//
-                }
-                else {
-                    return cb(null, false, { message: 'Incorrect username or password.' });
-                }
-            } catch (error) {
-                console.log(error);
-                return cb(null, false, { message: 'Incorrect username or password.' });
-            }
-        }
-    )
-);
+const passport=require("./auth");
 const loginRouter=new express.Router();
 loginRouter.get('/', (req, res) => {
     res.render("./login/patient")
@@ -30,7 +7,7 @@ loginRouter.get('/', (req, res) => {
 loginRouter.get('/doctor',(req,res)=>{
     res.render("./login/doctor")
 })
-loginRouter.post("/patient", passport.authenticate('local',{
+loginRouter.post("/patient", passport.authenticate('doctor',{
     successRedirect: '/success',
     failureRedirect: '/failure'
 }),async (req, res) => {
