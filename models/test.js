@@ -18,5 +18,5 @@ const testSchema = new mongoose.Schema({
             required: true,
         }
     }]
-})
+});
 module.exports = mongoose.model('test',testSchema);

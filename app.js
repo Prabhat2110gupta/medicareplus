@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const logger = require('morgan');
 const multer = require('multer');
 const counters = require("./models/counters");
+require("./resources/passportAuth")
 
 const storage = multer.diskStorage({
     destination: "uploads",

@@ -1,11 +1,11 @@
 const express=require('express');
-const passport=require("./auth");
+const passport=require("passport");
 const loginRouter=new express.Router();
 loginRouter.get('/', (req, res) => {
     res.render("./login/patient")
 })
 loginRouter.get('/doctor',(req,res)=>{
-    res.render("./login/doctor")
+    res.render("login/doctor")
 })
 loginRouter.post("/patient", passport.authenticate('doctor',{
     successRedirect: '/success',
