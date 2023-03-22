@@ -7,7 +7,7 @@ indexRouter.get("/success",(req,res)=>{
     res.send("SUCCESS");
 });
 indexRouter.get("/failure",(req,res)=>{
-    res.send("failure".toUpperCase());
+    res.render("message",{message:req.flash})
 });
 indexRouter.get("/",(req,res)=>{
 

@@ -4,8 +4,11 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const logger = require('morgan');
 const multer = require('multer');
-const counters = require("./models/counters");
-require("./resources/passportAuth")
+require("./resources/passportAuth");
+const passport = require('passport');
+const mongoose=require('mongoose');
+const session = require('express-session');
+const SQLiteStore = require('connect-sqlite3')(session);
 
 const storage = multer.diskStorage({
     destination: "uploads",
@@ -30,14 +33,18 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const static_path = (path.join(__dirname, "../public"));
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
+}));
+app.use(passport.authenticate('session'));
 app.set('view engine', 'hbs');
 app.use(express.static(static_path));
 
-
-
-const mongoose = require("mongoose");
-
-mongoose.connect("mongodb://127.0.0.1:27017/med_register", {}).then(() => { //don't use localhost here (didn't work in linux,failed to connect) 
+mongoose.set('strictQuery',false);
+mongoose.connect(process.env.MONGO_URI, {}).then(() => { //don't use localhost here (didn't work in linux,failed to connect) 
     console.log(`Mongoose connected`);
 }).catch((e) => {
     console.log(e.reason);

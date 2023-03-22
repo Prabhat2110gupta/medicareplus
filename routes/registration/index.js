@@ -1,18 +1,13 @@
 const express=require('express');
 const router= new express.Router;
-const patientModel = require("../../models/patient");
-// router.get('/registration/patient/', (req, res) => {
-//     res.render("./registration/patient")
-// })
-// router.get('/registration/doctor',(req,res)=>{
-//     res.render("./registration/doctor")
-// })
+const {patientModel,doctorModel} = require("../../models/");
+
 
 
 router.get('/', (req, res) => {
-    res.render("login")
+    res.render("registration/doctor");
 })
-router.post("/", (req, res) => {
+router.post("/new/patient", (req, res) => {
     console.log(req.body.email)
     console.log(req.body.password)
     const obj = {
@@ -46,7 +41,7 @@ router.post("/", (req, res) => {
 })
 
 router.get("/", (req, res) => {
-    res.render("./registration/doctor");
+    res.render("registration/doctor");
 })
 router.post("/", async (req, res) => {
     const obj = {
@@ -63,7 +58,7 @@ router.post("/", async (req, res) => {
     try {
         if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(obj.email)) throw 'Email Invalid';
 
-        if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(obj.password)) throw 'Password invalid';
+        // if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(obj.password)) throw 'Password invalid';
         // password must contain at least eight characters, at least one number and both lower and uppercase letters and special characters
         if (!/^[a-z ,.'-]+$/i.test(obj.name)) throw 'Name invalid';
         if (!/\+?\d[\d -]{8,12}\d/.test(obj.phone_number)) throw 'phone number invalid';

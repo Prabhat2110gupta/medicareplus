@@ -38,4 +38,16 @@ passport.use('patient', new LocalStrategy(
             return cb(null, false, { message: 'Incorrect username or password.' });
         }
     }
-))
+));
+
+passport.serializeUser(function (user, cb) {
+    process.nextTick(function () {
+        cb(null, { email: user.email, username: user.name });
+    });
+});
+
+passport.deserializeUser(function (user, cb) {
+    process.nextTick(function () {
+        return cb(null, user);
+    });
+});
