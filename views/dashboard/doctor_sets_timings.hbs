@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function addTime() {
+
+            const timings = document.getElementById("timings");
+            const form1 = document.getElementById("form1");
+            console.log(form1.start)
+            timings.innerText += `\n${form1.start.value} ${form1.end.value}`
+        }
+    </script>
+    <span id="timings"></span>
+    <form id="form1">
+        Start:<input type="time" name="start">
+        End:<input type="time" name="end">
+        <button onclick="addTime()" type="button">Add</button>
+    </form>
+</body>
+
+</html>

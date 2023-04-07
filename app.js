@@ -6,10 +6,9 @@ const logger = require('morgan');
 const multer = require('multer');
 require("./resources/passportAuth");
 const passport = require('passport');
-const mongoose=require('mongoose');
 const session = require('express-session');
 const SQLiteStore = require('connect-sqlite3')(session);
-
+require("./db/conn");//connect to database
 const storage = multer.diskStorage({
     destination: "uploads",
     filename: async (_req, file, cb) => {
@@ -34,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const static_path = (path.join(__dirname, "../public"));
 app.use(session({
-    secret: 'keyboard cat',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
@@ -43,13 +42,7 @@ app.use(passport.authenticate('session'));
 app.set('view engine', 'hbs');
 app.use(express.static(static_path));
 
-mongoose.set('strictQuery',false);
-mongoose.connect(process.env.MONGO_URI, {}).then(() => { //don't use localhost here (didn't work in linux,failed to connect) 
-    console.log(`Mongoose connected`);
-}).catch((e) => {
-    console.log(e.reason);
-    console.log(`Mongoose not connected`);
-})
+
 
 
 const indexRouter = require('./routes');

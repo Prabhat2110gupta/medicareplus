@@ -1,0 +1,24 @@
+const mongoose = require("mongoose");
+
+const appointmentSchema = new mongoose.Schema({
+   
+   Start_Time:{
+    type:Date,
+    require:true,
+    },
+    Max_slot:{
+        type:Number,
+        required:true,
+    },
+    Curr_booked:{
+        tupe:Number,
+        required:true,
+    },
+   doctors:{
+    type:mongoose.Schema.Types.ObjectId ,ref :'DoctorRecords',
+    required:true,
+   }
+ } );
+
+const appointmentModel=mongoose.model('AppointmentsRecords',appointmentSchema);
+module.exports=appointmentModel;

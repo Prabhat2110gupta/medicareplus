@@ -52,4 +52,5 @@ const patientSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('PatientRecords', patientSchema);
+const patientModel=mongoose.model('PatientRecords', patientSchema);
+module.exports = patientModel;
