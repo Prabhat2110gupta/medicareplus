@@ -15,17 +15,15 @@
 
             const timings = document.getElementById("timings");
             const form1 = document.form1;
-            console.log(form1.start)
-            timings.innerText += `\n${form1.start.value} ${form1.end.value}`
         }
     </script>
     <span id="timings"></span>
-    <form name="form1">
+    <form name="form1" method="post" action="book">
         
         Start:<input type="datetime-local" name="start">
         interval(minutes):<input type="number" name="interval">
         Max Slots<input type="number" name="max_slots">
-        <button onclick="addTime()" type="button">Add</button>
+        <button onclick="addTime()" type="submit">Add</button>
     </form>
 </body>
 

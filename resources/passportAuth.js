@@ -10,6 +10,7 @@ passport.use('doctor',
             try {
                 const userData = await doctorModel.findOne({ email: username });
                 if (userData != null && userData.password === password) {
+                    userData.type="doctor";
                     return cb(null, userData);//
                 }
                 else {
@@ -28,6 +29,7 @@ passport.use('patient', new LocalStrategy(
         try {
             const userData = await patientModel.findOne({ email: username });
             if (userData != null && userData.password === password) {
+                userData.type="patient";
                 return cb(null, userData);//
             }
             else {
@@ -42,7 +44,7 @@ passport.use('patient', new LocalStrategy(
 
 passport.serializeUser(function (user, cb) {
     process.nextTick(function () {
-        cb(null, { email: user.email, username: user.name });
+        cb(null, { email: user.email, username: user.name,type:user.type });
     });
 });
 

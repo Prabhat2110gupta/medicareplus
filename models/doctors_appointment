@@ -10,11 +10,11 @@ const appointmentSchema = new mongoose.Schema({
         type:Number,
         required:true,
     },
-    Curr_booked:{
-        tupe:Number,
-        required:true,
-    },
-   doctors:{
+    Patient_list:[{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'PatientRecords',
+    }],
+   doctor:{
     type:mongoose.Schema.Types.ObjectId ,ref :'DoctorRecords',
     required:true,
    }

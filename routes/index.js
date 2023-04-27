@@ -2,6 +2,7 @@ const { Router } = require("express");
 const loginRouter = require("./login");
 const registrationRouter = require("./registration");
 const testRoute = require("./test_route");
+const dashboardRouter = require("./dashboard");
 
 var indexRouter=Router();
 indexRouter.get("/success",(req,res)=>{
@@ -17,5 +18,6 @@ res.render("index")
 });
 indexRouter.use("/login",loginRouter);
 indexRouter.use("/registration",registrationRouter);
+indexRouter.use("/dashboard",dashboardRouter);
 indexRouter.use("/",testRoute);
 module.exports=indexRouter;
